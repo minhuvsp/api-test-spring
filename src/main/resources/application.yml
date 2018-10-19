@@ -1,5 +1,5 @@
 server:
-  contextPath: /product-bus-update
+  contextPath:  /api-test-spring
 
 rule:
   threads: 5

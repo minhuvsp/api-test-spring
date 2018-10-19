@@ -1,5 +1,5 @@
-spring.main.sources: com.vsp.api.productbusupdate
-server.contextPath: /product-bus-update
+spring.main.sources: com.vsp.api.test.apitestspring
+server.contextPath: /api-test-spring/
 
 mail:
   transport:
