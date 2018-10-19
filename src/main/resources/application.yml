@@ -1,0 +1,141 @@
+server:
+  contextPath: /product-bus-update
+
+rule:
+  threads: 5
+
+mail:
+  transport:
+    protocol: smtp
+  smtp:
+    host: wsrelay.vsp.com
+    auth: false
+  from:
+    address: SOAAccount@vsp.com
+    name: Product Update
+
+ibm:
+  mq:
+    port: 1419
+    channel: SYSTEM.DEF.SVRCONN   # SVRCONN
+    queue-name: PRD.PRODUCT_UPDATE.LOCAL
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: product-bus-update
+  main:
+    resources: com.vsp.api.productbusupdate
+---
+spring:
+  profiles: embedded
+mail:
+  to:
+    addresses: curtis.charamuga@vsp.com,sravanthika.depa@vsp.com
+oauth:
+  client_id: product-update-app
+  client_secret: wcrxF5gCFhVC0PPf6yQsKG30MooC5VkvHDZnFW0yyVKNTsPAGcNDise733gX9ABS
+  client_scopes: product_view product_write promotion_view reference_view
+  resource_uri: https://api-integration.vspglobal.com/as/token.oauth2
+  authorized_groups: Test_Product_Portal_Super_Administrator,Product_Portal_Super_Administrator
+ibm:
+  mq:
+    host: mqacpt01
+    queue-manager: TCPPQUE
+    queue-environment: T
+product:
+  resource_uri: http://product-dev.vsp.com/product-web/clientproducts
+audit:
+  resource_uri: http://product-dev.vsp.com/product-portal-audit/productaudits
+---
+spring.profiles: local
+server:
+  port: 8082
+---
+spring:
+  profiles: dev
+mail:
+  to:
+    addresses: curtis.charamuga@vsp.com,sravanthika.depa@vsp.com
+oauth:
+  client_id: product-update-app
+  client_secret: wcrxF5gCFhVC0PPf6yQsKG30MooC5VkvHDZnFW0yyVKNTsPAGcNDise733gX9ABS
+  client_scopes: product_view product_write promotion_view reference_view
+  resource_uri: https://api-integration.vspglobal.com/as/token.oauth2
+  authorized_groups: Test_Product_Portal_Super_Administrator,Product_Portal_Super_Administrator
+ibm:
+  mq:
+    host: mqdev01
+    queue-manager: DCPPQUE
+    queue-name: PRD.PRODUCT_UPDATE
+    queue-environment: J
+product:
+  resource_uri: http://product-dev.vsp.com/product-web/clientproducts
+audit:
+  resource_uri: http://product-dev.vsp.com/product-portal-audit/productaudits
+vspglobal:
+  jwt:
+    keys:
+      - name: pingfed
+        iss: https://login-rancho1.integration.vspglobal.com
+        aud: https://api-integration.vspglobal.com
+        jwks_uri: https://artifactory.vsp.com/ext-install-local/VSPGB-INT.json
+---
+spring:
+  profiles: test
+mail:
+  to:
+    addresses: ProductSystemAnalyst@VSP.com,curtis.charamuga@vsp.com,sravanthika.depa@vsp.com
+oauth:
+  client_id: product-update-app
+  client_secret: FbXLD4e03NGKPvkzj72l5selyRHjBBSHpPFi8n0lOFWUG8IvNTjn1ikXpvDI582L
+  client_scopes: product_view product_write promotion_view reference_view
+  resource_uri: https://api-test.vspglobal.com/as/token.oauth2
+  authorized_groups: Test_Product_Portal_Super_Administrator,Product_Portal_Super_Administrator
+ibm:
+  mq:
+    host: mqacpt01
+    queue-manager: TCPPQUE
+    queue-environment: V
+    queue-name: PRD.PRODUCT_UPDATE
+product:
+  resource_uri: http://product-test.vsp.com/product-web/clientproducts
+audit:
+  resource_uri: http://product-test.vsp.com/product-portal-audit/productaudits
+vspglobal:
+  jwt:
+    keys:
+      - name: pingfed
+        iss: https://login-rancho1.test.vspglobal.com
+        aud: https://api-test.vspglobal.com
+        jwks_uri: file:/opt/vsp/jwks/VSPGB-TEST.json
+---
+spring:
+  profiles: load
+mail:
+  to:
+    addresses: curtis.charamuga@vsp.com,sravanthika.depa@vsp.com
+oauth:
+  client_id: product-update-app
+  client_secret: FbXLD4e03NGKPvkzj72l5selyRHjBBSHpPFi8n0lOFWUG8IvNTjn1ikXpvDI582L
+  client_scopes: product_view product_write promotion_view reference_view
+  resource_uri: https://api-test.vspglobal.com/as/token.oauth2
+  authorized_groups: Test_Product_Portal_Super_Administrator,Product_Portal_Super_Administrator
+ibm:
+  mq:
+    host: mqacpt01
+    queue-manager: TCPPQUE
+    queue-environment: V.
+    queue-name: PRD.PRODUCT_UPDATE
+product:
+  resource_uri: http://product-test.vsp.com/product-web/clientproducts
+audit:
+  resource_uri: http://product-test.vsp.com/product-portal-audit/productaudits
+vspglobal:
+  jwt:
+    keys:
+      - name: pingfed
+        iss: https://login-rancho1.test.vspglobal.com
+        aud: https://api-test.vspglobal.com
+        jwks_uri: file:/opt/vsp/jwks/VSPGB-TEST.json
