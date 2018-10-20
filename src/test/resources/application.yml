@@ -1,5 +1,5 @@
 spring.main.sources: com.vsp.api.test.apitestspring
-server.contextPath: /api-test-spring/
+server.contextPath: /api-test-spring
 
 mail:
   transport:
