@@ -1,5 +1,6 @@
 package com.vsp.api.productbusupdate.config;
 
+import com.vspglobal.cloud.jackson.DateMidnightModule;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,6 @@ import com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.vsp.api.product.service.ProductApiService;
 import com.vsp.api.product.service.ProductApiServiceImpl;
-//import com.vspglobal.cloud.jackson.DateMidnightModule;
 
 @Configuration
 @EnableWebMvc
@@ -65,7 +65,7 @@ public class CommonConfig extends WebMvcConfigurerAdapter {
     public static ObjectMapper jsonMapper() {
         ObjectMapper jsonMapper = new ObjectMapper();
         jsonMapper.registerModule(new JodaModule());
-//        jsonMapper.registerModule(new DateMidnightModule());
+        jsonMapper.registerModule(new DateMidnightModule());
         jsonMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         jsonMapper.setSerializationInclusion(Include.NON_EMPTY);
         jsonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

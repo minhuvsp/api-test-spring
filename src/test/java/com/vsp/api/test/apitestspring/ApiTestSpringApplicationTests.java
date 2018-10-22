@@ -47,4 +47,17 @@ public class ApiTestSpringApplicationTests {
 
     }
 
+    @Test
+    public void testRetrieveClientProductByDivisionClass()
+    {
+        String clientId = "30084834";
+        String classId = "0006";
+        String divisionId = "0006";
+        String asOfDate = "2019-04-01";
+
+        ClientProduct cp = productApiService.retrieveClientProductByDivisionClass(clientId, divisionId, classId,
+                asOfDate);
+        System.out.println( "Retrieve client product:"  + ( ( cp == null ) ? "failed" : "success" ) );
+    }
+
 }
