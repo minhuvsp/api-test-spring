@@ -1,5 +1,7 @@
 package com.vsp.api.productbusupdate.config;
 
+import com.vsp.api.network.service.ProviderNetworkService;
+import com.vsp.api.network.service.ProviderNetworkServiceImpl;
 import com.vspglobal.cloud.jackson.DateMidnightModule;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -49,6 +51,12 @@ public class CommonConfig extends WebMvcConfigurerAdapter {
     public ProductApiService productApiService() {
     	ProductApiService productApiService = new ProductApiServiceImpl();
         return productApiService;
+    }
+
+    @Bean(name = "providerNetworkService")
+    public ProviderNetworkService providerNetworkService() {
+        ProviderNetworkService providerNetworkService = new ProviderNetworkServiceImpl();
+        return providerNetworkService;
     }
 
     @Bean(name = "productUpdateRestTemplate")

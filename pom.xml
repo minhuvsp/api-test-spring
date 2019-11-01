@@ -23,7 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<api-gb.version>4.0.821</api-gb.version>
+		<api-gb.version>5.0-SNAPSHOT</api-gb.version>
 	</properties>
 
 	<dependencies>

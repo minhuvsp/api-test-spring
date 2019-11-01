@@ -76,6 +76,8 @@ product:
   resource_uri: http://product-dev.vsp.com/product-web/clientproducts
 audit:
   resource_uri: http://product-dev.vsp.com/product-portal-audit/productaudits
+network:
+  resource_uri: http://product-dev.vsp.com/product-provider-networkapi/providernetworks
 ---
 spring:
   profiles: dev
@@ -101,6 +103,8 @@ product:
   resource_uri: http://product-dev.vsp.com/product-web/clientproducts
 audit:
   resource_uri: http://product-dev.vsp.com/product-portal-audit/productaudits
+network:
+  resource_uri: http://product-dev.vsp.com/product-provider-networkapi/providernetworks
 vspglobal:
   jwt:
     keys:
@@ -132,6 +136,8 @@ product:
   resource_uri: http://product-test.vsp.com/product-web/clientproducts
 audit:
   resource_uri: http://product-test.vsp.com/product-portal-audit/productaudits
+network:
+  resource_uri: http://product-dev.vsp.com/product-provider-networkapi/providernetworks
 vspglobal:
   jwt:
     keys:
